@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="chambray">#32528D</color>
+    <color name="astronaut">#24426B</color>
+    <color name="baby_blue">#C3E0E5</color>
+    <color name="blue_gray">#5885AF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--Text colors-->
+    <color name="textHeadline">#fffffff</color>
+    <color name="textBody">#f1f1f1</color>
+</resources>

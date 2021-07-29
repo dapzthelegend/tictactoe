@@ -1,0 +1,43 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/chambray</item>
+        <item name="colorPrimaryVariant">@color/astronaut</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorAccent">@color/chambray</item>
+
+        <!-- Status bar  -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="AppTheme.BackgroundStyle">
+        <item name="android:background">@android:color/background_light</item>
+    </style>
+
+    <style name="AppTheme.SurfaceStyle">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@color/chambray</item>
+    </style>
+
+    <style name="AppTheme.FloatingActionButton" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">@color/chambray</item>
+        <item name="backgroundTint">@color/astronaut</item>
+    </style>
+
+    <!--Text appearances-->
+    <style name="TextAppearance.Title" parent="@style/TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/textHeadline</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="TextAppearance.Body" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/textBody</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="TextAppearance.Hidden" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/textBody</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+</resources>
