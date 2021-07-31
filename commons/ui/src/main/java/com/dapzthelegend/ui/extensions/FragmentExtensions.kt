@@ -1,4 +1,4 @@
-package com.example.ui.extensions
+package com.dapzthelegend.ui.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel

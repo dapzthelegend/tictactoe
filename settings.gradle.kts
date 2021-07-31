@@ -5,6 +5,8 @@ include (
     ":app",
     ":core",
     ":features:home",
+    ":features:multi_player",
     ":commons:ui"
 )
+
 

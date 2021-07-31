@@ -59,7 +59,7 @@ android {
     }
 
     dynamicFeatures = mutableSetOf(
-        BuildModules.Features.HOME
+        BuildModules.Features.HOME, BuildModules.Features.MULTI_PLAYER
     )
 
 

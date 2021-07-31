@@ -6,8 +6,9 @@
     <color name="blue_gray">#5885AF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#f7f7f7</color>
 
     <!--Text colors-->
-    <color name="textHeadline">#fffffff</color>
+    <color name="textHeadline">#ffffff</color>
     <color name="textBody">#f1f1f1</color>
 </resources>

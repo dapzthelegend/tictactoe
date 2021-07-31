@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dapzthelegend.multiplayer.register.RegisterViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/chambray"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/register_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/TextAppearance.Title"
+                android:text="@string/enter_your_name"
+                android:textSize="@dimen/register_label_textsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAlignment="center"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/player_1_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/TextAppearance.Body"
+                android:text="@string/player_1"
+                android:textSize="@dimen/register_player_name_label_textsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/register_label"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/register_default_margin_top"
+                android:layout_marginEnd="@dimen/register_default_margin"
+                android:layout_marginStart="@dimen/register_default_margin"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/player_1_textinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Edittext.Body"
+                app:layout_constraintTop_toBottomOf="@id/player_1_label"
+                android:layout_marginTop="@dimen/register_edittext_margin_top"
+                android:layout_marginStart="@dimen/register_default_margin"
+                android:layout_marginEnd="@dimen/register_default_margin"
+                android:hint="@string/enter_name"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/player_2_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/TextAppearance.Body"
+                android:text="@string/player_2"
+                android:textSize="@dimen/register_player_name_label_textsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_1_textinput"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/register_default_margin_top"
+                android:layout_marginStart="@dimen/register_default_margin"
+                android:layout_marginEnd="@dimen/register_default_margin"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/player_2_textinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Edittext.Body"
+                app:layout_constraintTop_toBottomOf="@id/player_2_label"
+                android:layout_marginTop="@dimen/register_edittext_margin_top"
+                android:layout_marginStart="@dimen/register_default_margin"
+                android:layout_marginEnd="@dimen/register_default_margin"
+                android:hint="@string/enter_name"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/register_button_width"
+                android:layout_height="@dimen/register_button_height"
+                style="@style/Button.RoundedCorners"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_2_textinput"
+                android:layout_marginTop="@dimen/register_default_margin_top"
+                android:layout_marginStart="@dimen/register_default_margin"
+                android:textSize="@dimen/register_button_textsize"
+                android:paddingStart="@dimen/register_button_padding"
+                android:paddingEnd="@dimen/register_button_padding"
+                android:drawableStart="@drawable/ic_arrow_left"
+                android:text="@string/home"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/register_button_width"
+                android:layout_height="@dimen/register_button_height"
+                style="@style/Button.RoundedCorners"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_2_textinput"
+                android:layout_marginTop="@dimen/register_default_margin_top"
+                android:layout_marginEnd="@dimen/register_default_margin"
+                android:textSize="@dimen/register_button_textsize"
+                android:paddingStart="@dimen/register_button_padding"
+                android:paddingEnd="@dimen/register_button_padding"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:text="@string/start"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/register_button_width"
+                android:layout_height="@dimen/register_button_height"
+                style="@style/Button.RoundedCorners"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_2_textinput"
+                android:layout_marginTop="@dimen/register_default_margin_top"
+                android:layout_marginEnd="@dimen/register_default_margin"
+                android:textSize="@dimen/register_button_textsize"
+                android:paddingStart="@dimen/register_button_padding"
+                android:paddingEnd="@dimen/register_button_padding"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:text="@string/skip"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </RelativeLayout>
+</layout>

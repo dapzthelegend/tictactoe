@@ -1,4 +1,4 @@
-package com.example.ui.livedata
+package com.dapzthelegend.ui.livedata
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
@@ -39,7 +39,7 @@ class SingleLiveData<T> : MutableLiveData<T>() {
         }
         super.observe(
             owner,
-            Observer { t ->
+            { t ->
                 if (pending.compareAndSet(true, false)) {
                     observer.onChanged(t)
                 }

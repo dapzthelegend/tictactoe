@@ -1,4 +1,4 @@
-package com.example.ui.base
+package com.dapzthelegend.ui.base
 
 import android.content.Context
 import android.os.Bundle
@@ -49,7 +49,7 @@ abstract class BaseFragment<B : ViewDataBinding, M : ViewModel>(
      *
      * @return Return the view for the fragment's UI or null
      *
-     * @see Fragment.OnCreateView
+     * @see Fragment.onCreateView
      */
     override fun onCreateView(
         inflater: LayoutInflater,

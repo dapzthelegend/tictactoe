@@ -1,4 +1,4 @@
-package com.example.ui.extensions
+package com.dapzthelegend.ui.extensions
 
 import android.content.Context
 import androidx.annotation.StringRes

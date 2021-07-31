@@ -1,10 +1,10 @@
 package commons
 
+import dependencies.AnnotationProcessorsDependencies
 import dependencies.Dependencies
 import org.gradle.kotlin.dsl.kotlin
 import extensions.addTestsDependencies
 import gradle.kotlin.dsl.accessors._4a966a37257c980fa7c393be2529c9b8.androidExtensions
-import gradle.kotlin.dsl.accessors._4a966a37257c980fa7c393be2529c9b8.kotlinOptions
 
 plugins {
     id("com.android.dynamic-feature")
@@ -80,6 +80,7 @@ android {
 dependencies {
     implementation(project(BuildModules.APP))
     implementation(project(BuildModules.CORE))
+    implementation(project(BuildModules.Commons.UI))
 
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.APPCOMPAT)
@@ -94,6 +95,8 @@ dependencies {
     implementation(Dependencies.CONSTRAIN_LAYOUT)
     implementation(Dependencies.DAGGER)
     implementation(Dependencies.TIMBER)
+
+    kapt(AnnotationProcessorsDependencies.DAGGER)
 
     addTestsDependencies()
 }

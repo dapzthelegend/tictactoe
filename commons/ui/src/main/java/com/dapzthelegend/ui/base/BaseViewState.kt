@@ -1,4 +1,4 @@
-package com.example.ui.base
+package com.dapzthelegend.ui.base
 
 /**
  * Base state interface to describe different state of the view.

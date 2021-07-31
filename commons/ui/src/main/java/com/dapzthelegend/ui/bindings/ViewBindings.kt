@@ -1,4 +1,4 @@
-package com.example.ui.bindings
+package com.dapzthelegend.ui.bindings
 
 import android.view.View
 import android.view.View.GONE

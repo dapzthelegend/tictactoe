@@ -8,7 +8,42 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.dapzthelegend.home.HomeFragment"
-        app:moduleName="tictactoe.features.home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_register_fragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+           />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.dapzthelegend.multiplayer.register.RegisterFragment"
+        android:label="register">
+        <action
+            android:id="@+id/action_register_fragment_to_xo_fragment"
+            app:destination="@id/xoFragment" >
+            <argument
+                android:name="player_name_1" />
+            <argument
+                android:name="player_name_2" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/xoFragment"
+        android:name="com.dapzthelegend.multiplayer.xo.XOFragment"
+        android:label="xo">
+        <argument
+            android:name="player_name_1"
+            app:argType="string"
+            android:defaultValue="Player 1" />
+        <argument
+            android:name="player_name_2"
+            app:argType="string"
+            android:defaultValue="Player 2" />
+    </fragment>
+
 </navigation>

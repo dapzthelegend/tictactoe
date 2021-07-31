@@ -4,6 +4,7 @@ object BuildModules {
 
     object Features {
         const val HOME = ":features:home"
+        const val MULTI_PLAYER = ":features:multi_player"
     }
 
     object Commons {

@@ -1,4 +1,6 @@
 package com.dapzthelegend.ui.base
 
-class BaseViewEvent {
-}
+/**
+ * Base class for managing application's view events.
+ */
+abstract class BaseViewEvent
