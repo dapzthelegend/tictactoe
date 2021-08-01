@@ -36,9 +36,9 @@ configure<BaseExtension> {
 
     lintOptions {
         val file = File("/.lint/config.xml")
+        lintConfig = file
         isCheckAllWarnings = true
         isWarningsAsErrors = true
-        lintConfig = file
     }
 
     testOptions {
