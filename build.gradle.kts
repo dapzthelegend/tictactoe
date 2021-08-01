@@ -8,3 +8,7 @@ allprojects {
     plugins.apply(BuildPlugins.DETEKT)
     plugins.apply(BuildPlugins.KTLINT)
 }
+
+task<Delete>("clean") {
+    delete(rootProject.buildDir)
+}

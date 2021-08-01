@@ -3,7 +3,6 @@ package com.dapzthelegend.ui.extensions
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 
 /**
  * Adds the given observer to the observers list within the lifespan of the given

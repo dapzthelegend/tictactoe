@@ -7,41 +7,35 @@ import extensions.addTestsDependencies
 plugins {
     id(BuildPlugins.ANDROID_APPLICATION)
     id(BuildPlugins.KOTLIN_ANDROID)
-    id(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
+    id(BuildPlugins.BASE_ANDROID_APPLICATION)
+    id(BuildPlugins.BASE_KOTLIN_APPLICATION)
     id(BuildPlugins.KOTLIN_KAPT)
     id(BuildPlugins.NAVIGATION_SAFE_ARGS)
     id(BuildPlugins.KOTLIN_ALLOPEN)
-    id(BuildPlugins.JACOCO)
+ //   id(BuildPlugins.JACOCO)
     id(BuildPlugins.GRAPH_GENERATOR)
 }
 
 android {
-    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
     buildToolsVersion = BuildAndroidConfig.BUILD_TOOL_VERSION
 
 
     defaultConfig {
         applicationId = BuildAndroidConfig.APPLICATION_ID
-        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
-        versionCode(BuildAndroidConfig.VERSION_CODE)
-        versionName(BuildAndroidConfig.VERSION_NAME)
 
         vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
-        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
         testInstrumentationRunnerArguments.putAll(BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER_ARGUMENTS)
     }
 
+
     buildTypes {
 
-        getByName(BuildType.RELEASE){
+        getByName("release") {
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
             isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
         }
-
-
-        getByName(BuildType.DEBUG){
+        getByName("debug"){
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
             isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
             applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
@@ -49,57 +43,20 @@ android {
         }
     }
 
-
-    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
-
-    productFlavors{
-        ProductFlavorDevelop.appCreate(this)
-        ProductFlavorQA.appCreate(this)
-        ProductFlavorProduction.appCreate(this)
-    }
-
-    dynamicFeatures = mutableSetOf(
+    dynamicFeatures.addAll(mutableSetOf(
         BuildModules.Features.HOME, BuildModules.Features.MULTI_PLAYER
-    )
+    ))
 
 
     buildFeatures{
         dataBinding = true
     }
 
-    androidExtensions{
-        isExperimental = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
-        unitTests.isReturnDefaultValues = true
-    }
-
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/kotlin")
-        }
-        getByName("test") {
-            java.srcDir("src/test/kotlin")
-        }
-        getByName("androidTest") {
-            java.srcDir("src/androidTest/kotlin")
-        }
-    }
 }
 
-junitJacoco {
-    includeNoLocationClasses = true
-}
+//junitJacoco {
+//    includeNoLocationClasses = true
+//}
 
 
 dependencies {

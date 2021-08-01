@@ -1,5 +1,5 @@
 object BuildDependenciesVersions {
-    const val KOTLIN = "1.5.10"
+    const val KOTLIN = "1.5.20"
     const val APPCOMPAT = "1.3.0"
     const val MATERIAL = "1.4.0-rc01"
     const val COROUTINES = "1.5.0"
@@ -13,7 +13,6 @@ object BuildDependenciesVersions {
     const val TIMBER = "4.7.1"
     const val PLAY_CORE = "1.10.0"
     const val LEAKCANARY = "2.7"
-    const val DATABINDING = "3.4.0"
 
     // Tests
     const val TEST = "1.3.0"

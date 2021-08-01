@@ -5,17 +5,17 @@ import com.dapzthelegend.ui.base.BaseViewState
 /**
  * Class for managing different view states of [RegisterFragment]
  */
-sealed class RegisterViewState: BaseViewState {
+sealed class RegisterViewState : BaseViewState {
 
     /**
      * No name has been entered.
      */
-    object NoNameEntered: RegisterViewState()
+    object NoNameEntered : RegisterViewState()
 
     /**
      * Name entered.
      */
-    object NameEntered: RegisterViewState()
+    object NameEntered : RegisterViewState()
 
     // =============================================================================================
     // Public helper methods

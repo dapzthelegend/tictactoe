@@ -7,19 +7,18 @@ import com.dapzthelegend.ui.base.BaseViewEvent
  *
  * @see BaseViewEvent
  */
-sealed class RegisterViewEvent: BaseViewEvent() {
+sealed class RegisterViewEvent : BaseViewEvent() {
 
     /**
      * Start multiplayer game.
      */
     data class OpenXO(
-        val player_1:String,
-        val player_2: String
-    ): RegisterViewEvent()
+        val player1: String,
+        val player2: String
+    ) : RegisterViewEvent()
 
     /**
      * Return to home screen.
      */
-    object ReturnToHome: RegisterViewEvent()
+    object ReturnToHome : RegisterViewEvent()
 }
-
