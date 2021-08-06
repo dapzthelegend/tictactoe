@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "10980026051",
+    "project_id": "gather-ab331",
+    "storage_bucket": "gather-ab331.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10980026051:android:8005ba8434c670edafe476",
+        "android_client_info": {
+          "package_name": "co.crop2cash.gather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10980026051-lgo6h6fdlkr2q8o5m3gephf0isrgn3te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvRNbJvPX9T8amRFXR6HovbZbGksfbYdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10980026051-lgo6h6fdlkr2q8o5m3gephf0isrgn3te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
