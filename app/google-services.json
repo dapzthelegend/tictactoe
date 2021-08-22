@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "10980026051",
-    "project_id": "gather-ab331",
-    "storage_bucket": "gather-ab331.appspot.com"
+    "project_number": "1044991781022",
+    "project_id": "tictactoe-2d02a",
+    "storage_bucket": "tictactoe-2d02a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:10980026051:android:8005ba8434c670edafe476",
+        "mobilesdk_app_id": "1:1044991781022:android:f147508609f6845dbdb38f",
         "android_client_info": {
-          "package_name": "co.crop2cash.gather"
+          "package_name": "com.dapzthelegend.tictactoe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "10980026051-lgo6h6fdlkr2q8o5m3gephf0isrgn3te.apps.googleusercontent.com",
+          "client_id": "1044991781022-6vorq0aaujthp1dv64m7esqtfg8lm53e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAvRNbJvPX9T8amRFXR6HovbZbGksfbYdQ"
+          "current_key": "AIzaSyAyZOz-u79ZeAO2ZRSl-xYMt-YzLxd-xH0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "10980026051-lgo6h6fdlkr2q8o5m3gephf0isrgn3te.apps.googleusercontent.com",
+              "client_id": "1044991781022-6vorq0aaujthp1dv64m7esqtfg8lm53e.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
