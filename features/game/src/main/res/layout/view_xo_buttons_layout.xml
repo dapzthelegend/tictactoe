@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dapzthelegend.multiplayer.xo.XOViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/chambray"
+        visible="@{viewModel.state.roundEnd}"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Button.RoundedCorners"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@string/home"
+            android:onClick="@{() -> viewModel.onHomeClicked()}"
+            android:layout_alignParentStart="true"
+            android:textSize="@dimen/button_textsize" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/default_margin"
+            style="@style/Button.RoundedCorners"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/play_again"
+            android:onClick="@{() -> viewModel.onPlayAgainClicked()}"
+            android:textSize="@dimen/button_textsize" />
+
+    </RelativeLayout>
+</layout>

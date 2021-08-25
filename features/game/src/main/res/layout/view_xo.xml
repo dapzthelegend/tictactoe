@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dapzthelegend.multiplayer.xo.XOViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/chambray"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/scoreboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/sound_on"
+            android:text= "@string/scoreboard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/TextAppearance.Title"/>
+        <ImageView
+            android:id="@+id/sound_on"
+            android:layout_height="@dimen/xo_board_sound_on_image_view_size"
+            android:layout_width="@dimen/xo_board_sound_on_image_view_size"
+            android:src="@drawable/ic_sound_on"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/xo_board_sound_on_image_view_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/xo_board_sound_on_image_view_margin"
+
+            android:contentDescription="@string/sound_on"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="@integer/xo_score_board_linear_layout_weightSum"
+            app:layout_constraintTop_toBottomOf="@id/scoreboard"
+            android:layout_margin="@dimen/xo_scoreboard_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="@dimen/xo_scoreboard_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/xo_score_board_linear_layout_child_layout_weight"
+                android:layout_marginEnd="@dimen/xo_scoreboard_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/player_x_score_label"
+                    style="@style/TextAppearance.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_toStartOf="@id/player_x_score"
+                    android:layout_marginEnd="@dimen/xo_scoreboard_margin"
+                    android:textSize="@dimen/xo_scoreboard_text_size"
+                    android:text="@{viewModel.x}"
+                    tools:text="X" />
+
+                <TextView
+                    android:id="@+id/player_x_score"
+                    style="@style/TextAppearance.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="@dimen/xo_scoreboard_text_size"
+                    android:text="@{viewModel.gameManager.scoreX.toString()}"
+                    tools:text="0" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/xo_scoreboard_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/xo_score_board_linear_layout_child_layout_weight"
+                android:layout_marginStart="@dimen/xo_scoreboard_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/player_o_score"
+                    style="@style/TextAppearance.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/xo_scoreboard_text_size"
+                    android:text="@{viewModel.gameManager.scoreO.toString()}"
+                    tools:text="O" />
+
+                <TextView
+                    android:id="@+id/player_o_score_label"
+                    style="@style/TextAppearance.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_toEndOf="@id/player_o_score"
+                    android:layout_marginStart="@dimen/xo_scoreboard_margin"
+                    android:textSize="@dimen/xo_scoreboard_text_size"
+                    android:text="@{viewModel.o}"
+                    tools:text="O" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/xo_board_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/xo_board_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <include
+                android:id="@+id/include_xo_board"
+                layout="@layout/view_xo_board"
+                app:viewModel="@{viewModel}" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/xo_board_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <include
+                android:id="@+id/include_xo_text"
+                layout="@layout/view_xo_text_layout"
+                app:viewModel="@{viewModel}"/>
+
+            <include
+                android:id="@+id/include_xo_buttons"
+                layout="@layout/view_xo_buttons_layout"
+                app:viewModel="@{viewModel}"/>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

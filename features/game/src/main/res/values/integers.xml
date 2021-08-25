@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="xo_board_weight_sum">3</integer>
+    <integer name="xo_board_piece_layout_weight">1</integer>
+
+    <!--- XO View -->
+    <integer name="xo_score_board_linear_layout_weightSum">2</integer>
+    <integer name="xo_score_board_linear_layout_child_layout_weight">1</integer>
+</resources>
