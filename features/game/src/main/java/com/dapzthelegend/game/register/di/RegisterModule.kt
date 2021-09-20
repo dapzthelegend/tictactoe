@@ -1,8 +1,8 @@
-package com.dapzthelegend.multiplayer.register.di
+package com.dapzthelegend.game.register.di
 
 import com.dapzthelegend.core.di.scopes.FeatureScope
-import com.dapzthelegend.multiplayer.register.RegisterFragment
-import com.dapzthelegend.multiplayer.register.RegisterViewModel
+import com.dapzthelegend.game.register.RegisterFragment
+import com.dapzthelegend.game.register.RegisterViewModel
 import com.dapzthelegend.ui.extensions.viewModel
 import dagger.Module
 import dagger.Provides

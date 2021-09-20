@@ -1,11 +1,11 @@
-package com.dapzthelegend.multiplayer.xo.bindings
+package com.dapzthelegend.game.xo.bindings
 
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
+import com.dapzthelegend.game.xo.game.BoxState
 import com.dapzthelegend.multiplayer.R
-import com.dapzthelegend.multiplayer.xo.game.BoxState
 
 /**
  * View binding for xo piece image based on state.

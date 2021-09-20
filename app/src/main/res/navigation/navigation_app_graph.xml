@@ -15,35 +15,41 @@
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
            />
+
     </fragment>
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.dapzthelegend.multiplayer.register.RegisterFragment"
+        android:name="com.dapzthelegend.game.register.RegisterFragment"
         android:label="register">
         <action
             android:id="@+id/action_register_fragment_to_xo_fragment"
-            app:destination="@id/xoFragment" >
-            <argument
-                android:name="player_name_1" />
-            <argument
-                android:name="player_name_2" />
-        </action>
+            app:destination="@id/xoFragment"
+            app:popUpTo="@id/homeFragment"/>
+        <argument
+            android:name="isMultiPlayer"
+            app:argType="boolean" />
     </fragment>
 
     <fragment
         android:id="@+id/xoFragment"
-        android:name="com.dapzthelegend.multiplayer.xo.XOFragment"
+        android:name="com.dapzthelegend.game.xo.XOFragment"
         android:label="xo">
         <argument
             android:name="player_name_1"
             app:argType="string"
-            android:defaultValue="Player 1" />
+            android:defaultValue="X" />
         <argument
             android:name="player_name_2"
             app:argType="string"
-            android:defaultValue="Player 2" />
+            android:defaultValue="O" />
+        <argument
+            android:name="isMultiPlayer"
+            app:argType="boolean"/>
     </fragment>
+
 
 </navigation>

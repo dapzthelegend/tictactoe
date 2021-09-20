@@ -1,4 +1,4 @@
-package com.dapzthelegend.multiplayer
+package com.dapzthelegend.game
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

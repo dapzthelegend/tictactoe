@@ -5,8 +5,9 @@ include (
     ":app",
     ":core",
     ":features:home",
-    ":features:multi_player",
+    ":features:game",
     ":commons:ui"
+
 )
 
 pluginManagement {
@@ -33,5 +34,3 @@ pluginManagement {
         }
     }
 }
-
-

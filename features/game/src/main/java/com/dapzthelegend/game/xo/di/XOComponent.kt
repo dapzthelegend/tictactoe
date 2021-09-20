@@ -1,7 +1,7 @@
-package com.dapzthelegend.multiplayer.xo.di
+package com.dapzthelegend.game.xo.di
 
 import com.dapzthelegend.core.di.scopes.FeatureScope
-import com.dapzthelegend.multiplayer.xo.XOFragment
+import com.dapzthelegend.game.xo.XOFragment
 import dagger.Component
 
 /**

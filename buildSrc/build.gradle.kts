@@ -15,12 +15,14 @@ repositories {
 object PluginsVersions{
     const val GRADLE_ANDROID = "7.0.0"
     const val GRADLE_VERSIONS = "0.33.0"
-    const val KOTLIN = "1.4.31"
+    const val KOTLIN = "1.5.20"
     const val NAVIGATION = "2.3.0"
     const val JACOCO = "0.16.0"
     const val KTLINT = "0.39.0"
     const val DETEKT = "1.17.0"
     const val GRAPH_GENERATOR = "0.7.0-SNAPSHOT"
+    const val GOOGLE_SERVICES = "4.3.8"
+    const val FIREBASE_CRASHLYTICS = "2.7.1"
 }
 
 
@@ -34,4 +36,6 @@ dependencies {
     implementation("com.vanniktech:gradle-dependency-graph-generator-plugin:${PluginsVersions.GRAPH_GENERATOR}")
     implementation("com.pinterest:ktlint:${PluginsVersions.KTLINT}")
     implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${PluginsVersions.DETEKT}")
+    implementation("com.google.gms:google-services:${PluginsVersions.GOOGLE_SERVICES}")
+    implementation("com.google.firebase:firebase-crashlytics-gradle:${PluginsVersions.FIREBASE_CRASHLYTICS}")
 }

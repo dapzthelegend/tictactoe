@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dapzthelegend.multiplayer.xo.XOViewModel" />
+            type="com.dapzthelegend.game.xo.XOViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
             android:layout_marginEnd="@dimen/xo_board_sound_on_image_view_margin"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/xo_board_sound_on_image_view_margin"
-
+            android:visibility="invisible"
             android:contentDescription="@string/sound_on"/>
 
         <LinearLayout

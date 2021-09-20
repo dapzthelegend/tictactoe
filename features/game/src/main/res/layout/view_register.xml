@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dapzthelegend.multiplayer.register.RegisterViewModel" />
+            type="com.dapzthelegend.game.register.RegisterViewModel" />
     </data>
 
     <RelativeLayout
@@ -65,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/register_default_margin_top"
-                visible="@{viewModel.multiPlayer}"
+                visible="@{viewModel.state.multiPlayer}"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:text="@string/player_2"
                 android:textAlignment="textStart"
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
-                visible="@{viewModel.multiPlayer}"
+                visible="@{viewModel.state.multiPlayer}"
                 android:layout_marginTop="@dimen/register_edittext_margin_top"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:hint="@string/enter_name"
@@ -109,7 +109,7 @@
                 android:layout_marginTop="@dimen/register_default_margin_top"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:drawableEnd="@drawable/ic_arrow_right"
-                android:onClick="@{() -> viewModel.onSkipOrStartClicked(viewModel.playerName1, viewModel.playerName1 )}"
+                android:onClick="@{() -> viewModel.onSkipOrStartClicked(viewModel.playerName1, viewModel.playerName2 )}"
                 android:paddingStart="@dimen/register_button_padding"
                 android:paddingEnd="@dimen/register_button_padding"
                 android:text="@string/start"

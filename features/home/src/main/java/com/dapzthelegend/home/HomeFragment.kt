@@ -8,7 +8,8 @@ import com.dapzthelegend.home.databinding.FragmentHomeBinding
 import com.dapzthelegend.home.di.DaggerHomeComponent
 import com.dapzthelegend.home.di.HomeModule
 import com.dapzthelegend.ui.base.BaseFragment
-import com.dapzthelegend.ui.extensions.observe
+import com.dapzthelegend.ui.extensions.collect
+import kotlinx.coroutines.flow.collect
 
 /**
  * Home view displaying the single and multi player option.
@@ -28,8 +29,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observe(viewModel.event, ::onViewEventChanged)
+        collect(viewModel.event, lifecycle, ::onViewEventChanged)
+        // observe(viewModel.event2, ::onViewEventChanged)
     }
 
     /**
@@ -57,10 +58,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     private fun onViewEventChanged(event: HomeViewEvent) {
         when (event) {
             HomeViewEvent.MultiPlayer -> {
-                val action = HomeFragmentDirections.actionHomeFragmentToRegisterFragment()
+                val action = HomeFragmentDirections.actionHomeFragmentToRegisterFragment(true)
                 findNavController().navigate(action)
             }
             HomeViewEvent.SinglePlayer -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToRegisterFragment(false)
+                findNavController().navigate(action)
             }
         }
     }

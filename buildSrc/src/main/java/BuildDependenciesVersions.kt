@@ -4,7 +4,7 @@ object BuildDependenciesVersions {
     const val MATERIAL = "1.4.0-rc01"
     const val COROUTINES = "1.5.0"
     const val NAVIGATION = "2.3.5"
-    const val LIFECYCLE = "2.3.1"
+    const val LIFECYCLE = "2.4.0-alpha01"
     const val LIFECYCLE_EXTENSION = "2.2.0"
     const val CORE_KTX = "1.5.0"
     const val FRAGMENT_KTX = "1.3.4"
@@ -13,6 +13,7 @@ object BuildDependenciesVersions {
     const val TIMBER = "4.7.1"
     const val PLAY_CORE = "1.10.0"
     const val LEAKCANARY = "2.7"
+    const val FIREBASE_BOM = "28.3.0"
 
     // Tests
     const val TEST = "1.3.0"

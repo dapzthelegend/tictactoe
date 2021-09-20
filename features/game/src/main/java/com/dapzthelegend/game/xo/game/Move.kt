@@ -2,7 +2,7 @@
  * Created by Sola-Aremu Oluwadara on 25/08/2021.
  */
 
-package com.dapzthelegend.multiplayer.xo.game
+package com.dapzthelegend.game.xo.game
 
 /**
  * Class representing a position in the XO board.

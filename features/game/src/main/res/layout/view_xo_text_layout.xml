@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dapzthelegend.multiplayer.xo.XOViewModel" />
+            type="com.dapzthelegend.game.xo.XOViewModel" />
     </data>
 
     <RelativeLayout

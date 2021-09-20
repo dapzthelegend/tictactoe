@@ -1,15 +1,15 @@
-package com.dapzthelegend.multiplayer.xo
+package com.dapzthelegend.game.xo
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.dapzthelegend.game.xo.di.DaggerXOComponent
+import com.dapzthelegend.game.xo.di.XOModule
+import com.dapzthelegend.game.xo.game.Player
 import com.dapzthelegend.multiplayer.R
 import com.dapzthelegend.multiplayer.databinding.FragmentXOBinding
-import com.dapzthelegend.multiplayer.xo.di.DaggerXOComponent
-import com.dapzthelegend.multiplayer.xo.di.XOModule
-import com.dapzthelegend.multiplayer.xo.game.Player
 import com.dapzthelegend.ui.base.BaseFragment
 import com.dapzthelegend.ui.extensions.collect
 import com.dapzthelegend.ui.extensions.observe
@@ -24,6 +24,13 @@ class XOFragment : BaseFragment<FragmentXOBinding, XOViewModel>(
 ) {
 
     private val args: XOFragmentArgs by navArgs()
+
+    companion object {
+        const val START_GAME_DELAY = 200L
+        const val MID_GAME_DELAY = 500L
+        const val MAX_ROUNDS = 9
+        const val MIN_ROUNDS = 0
+    }
 
     /**
      * Called to have the fragment instantiate the user interface view
@@ -56,11 +63,12 @@ class XOFragment : BaseFragment<FragmentXOBinding, XOViewModel>(
     override fun onInitDataBinding() {
         viewModel.x = args.playerName1
         viewModel.o = args.playerName2
+        viewModel.isMultiPlayer = args.isMultiPlayer
         viewBinding.viewModel = viewModel
     }
 
     // =============================================================================================
-    // Private collectors
+    // Private collector
     // =============================================================================================
 
     /**
@@ -68,23 +76,30 @@ class XOFragment : BaseFragment<FragmentXOBinding, XOViewModel>(
      */
     private fun onViewEventChanged(viewEvent: XOViewEvent) {
         when (viewEvent) {
-            is XOViewEvent.ReturnToHome -> findNavController()
+            is XOViewEvent.ReturnToHome ->
+                findNavController()
+                    .popBackStack()
         }
     }
 
+    // =============================================================================================
+    // Private observer
+    // =============================================================================================
+
     /**
-     * Collector for view event.
+     * Observer for play changed.
      */
     private fun onPlayerChanged(player: Player) {
-        when (player) {
-            Player.PLAYER_2 -> if(args.mode =="single" && viewModel.gameManager.round != 9){
-                lifecycleScope.launch {
-                    if(viewModel.gameManager.round != 0) delay(500)
-                    else delay(100)
-                    val bestMove = viewModel.gameManager.findBestMove(viewModel.gameManager.getBoard())
-                    viewModel.onBoardClicked(bestMove.row, bestMove.col)
+        fun isAITurn() = !args.isMultiPlayer && player == Player.PLAYER_2
+        if (isAITurn() && viewModel.gameManager.round != MAX_ROUNDS) {
+            lifecycleScope.launch {
+                if (viewModel.gameManager.round != MIN_ROUNDS) {
+                    delay(MID_GAME_DELAY)
+                } else {
+                    delay(START_GAME_DELAY)
                 }
-
+                val bestMove = viewModel.gameManager.findBestMove(viewModel.gameManager.getBoard())
+                viewModel.makeMove(bestMove.row, bestMove.col)
             }
         }
     }

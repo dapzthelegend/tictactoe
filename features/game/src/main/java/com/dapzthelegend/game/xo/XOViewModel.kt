@@ -1,11 +1,11 @@
-package com.dapzthelegend.multiplayer.xo
+package com.dapzthelegend.game.xo
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
-import com.dapzthelegend.multiplayer.xo.game.GameManager
-import com.dapzthelegend.multiplayer.xo.game.Player
+import com.dapzthelegend.game.xo.game.GameManager
+import com.dapzthelegend.game.xo.game.Player
 import com.dapzthelegend.ui.base.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -21,6 +21,7 @@ class XOViewModel : BaseViewModel<XOViewEvent>() {
     var x = ""
     var o = ""
     val message: MutableLiveData<String> = MutableLiveData()
+    var isMultiPlayer: Boolean = false
 
     val state = Transformations.map(gameManager.winner) {
         when (it) {
@@ -41,10 +42,9 @@ class XOViewModel : BaseViewModel<XOViewEvent>() {
                 message.postValue("$x Won!")
                 XOViewState.RoundEnd
             }
-            Player.PLAYER_2 -> {
-                message.postValue("$o Won!")
+            Player.PLAYER_2 ->
                 XOViewState.RoundEnd
-            }
+
             else -> XOViewState.InRound
         }
     }
@@ -76,20 +76,16 @@ class XOViewModel : BaseViewModel<XOViewEvent>() {
         val id = view.tag.toString().toInt()
         val row = id / NUMBER_OF_ROWS_AND_COL
         val col = id % NUMBER_OF_ROWS_AND_COL
-        gameManager.played(row, col)
-
-        viewModelScope.launch {
-            delay(DELAY)
-            gameManager.checkWinner()
+        if (isMultiPlayer || gameManager.player.value == Player.PLAYER_1) {
+            makeMove(row, col)
         }
     }
 
     /**
-     * Called when user makes a new move.
+     * Called to update the game board.
      */
-    fun onBoardClicked(row:Int, col:Int) {
+    fun makeMove(row: Int, col: Int) {
         gameManager.played(row, col)
-
         viewModelScope.launch {
             delay(DELAY)
             gameManager.checkWinner()

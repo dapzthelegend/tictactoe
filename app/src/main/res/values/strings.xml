@@ -2,4 +2,5 @@
     <string name="app_name">TicTacToe</string>
     <string name="title_home">Module Title</string>
     <string name="title_multi_player">Module Title</string>
+    <string name="title_ai">Single Player</string>
 </resources>

@@ -14,6 +14,8 @@ plugins {
     id(BuildPlugins.KOTLIN_ALLOPEN)
  //   id(BuildPlugins.JACOCO)
     id(BuildPlugins.GRAPH_GENERATOR)
+    id(BuildPlugins.GOOGLE_SERVICES)
+    id(BuildPlugins.FIREBASE_CRASHLYTICS)
 }
 
 android {
@@ -27,12 +29,23 @@ android {
         testInstrumentationRunnerArguments.putAll(BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER_ARGUMENTS)
     }
 
+    signingConfigs {
+        getByName("debug"){
+            storeFile = File("/Users/dara/StudioProjects/tictactoe/app/key")
+            storePassword = "chemistry1"
+            keyPassword = "chemistry1"
+            keyAlias = "key0"
+        }
+    }
+
 
     buildTypes {
 
         getByName("release") {
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+            isDebuggable = false
+            signingConfig = signingConfigs.findByName("debug")
             isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
         }
         getByName("debug"){
@@ -44,14 +57,15 @@ android {
     }
 
     dynamicFeatures.addAll(mutableSetOf(
-        BuildModules.Features.HOME, BuildModules.Features.MULTI_PLAYER
-    ))
+        BuildModules.Features.HOME,
+        BuildModules.Features.GAME
+    )
+    )
 
 
     buildFeatures{
         dataBinding = true
     }
-
 }
 
 //junitJacoco {
@@ -70,6 +84,10 @@ dependencies {
     implementation(Dependencies.TIMBER)
     implementation(Dependencies.PLAY_CORE)
     implementation(Dependencies.DAGGER)
+    implementation(Dependencies.LIFECYCLE_RUNTIME)
+    implementation(platform(Dependencies.FIREBASE_BOM))
+    implementation(Dependencies.FIREBASE_ANALYTICS)
+    implementation(Dependencies.FIREBASE_CRASHLYTICS)
 
     debugImplementation(DebugDependencies.LEAKCANARY)
 

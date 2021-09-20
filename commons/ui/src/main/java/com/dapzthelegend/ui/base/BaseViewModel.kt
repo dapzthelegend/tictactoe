@@ -1,7 +1,7 @@
 package com.dapzthelegend.ui.base
 
 import androidx.lifecycle.ViewModel
-import com.dapzthelegend.ui.livedata.SingleLiveData
+import com.dapzthelegend.ui.flow.SingleFlow
 
 /**
  * Base view model for managing and preparing data for Fragments.
@@ -9,5 +9,5 @@ import com.dapzthelegend.ui.livedata.SingleLiveData
  * @see ViewModel
  */
 abstract class BaseViewModel<T : BaseViewEvent> : ViewModel() {
-    val event = SingleLiveData<T>()
+    val event = SingleFlow<T>()
 }

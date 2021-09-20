@@ -1,4 +1,4 @@
-package com.dapzthelegend.multiplayer.xo.game
+package com.dapzthelegend.game.xo.game
 
 /**
  * Class for managing XO Box view state.

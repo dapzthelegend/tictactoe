@@ -1,10 +1,7 @@
-package com.dapzthelegend.multiplayer.xo.game
+package com.dapzthelegend.game.xo.game
 
 import androidx.lifecycle.MutableLiveData
 import com.dapzthelegend.ui.livedata.SingleLiveData
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.runBlocking
-import timber.log.Timber
 import kotlin.random.Random.Default.nextInt
 
 /**
@@ -17,7 +14,7 @@ class GameManager {
     var round = ZERO
     val scoreX: MutableLiveData<Int> = MutableLiveData(ZERO)
     val scoreO: MutableLiveData<Int> = MutableLiveData(ZERO)
-    val winStates = arrayOf(
+    private val winStates = arrayOf(
         arrayOf(ZERO, ONE, TWO),
         arrayOf(THREE, FOUR, FIVE),
         arrayOf(SIX, SEVEN, EIGHT),
@@ -120,10 +117,10 @@ class GameManager {
      * @param board The tictactoe board.
      * @return True if there is at least one move left, else false.
      */
-    fun isMovesLeft(board:Array<Array<BoxState>>): Boolean{
-        for(row in board){
-            for (col in row){
-                if (col == BoxState.Empty){
+    private fun isMovesLeft(board: Array<Array<BoxState>>): Boolean {
+        for (row in board) {
+            for (col in row) {
+                if (col == BoxState.Empty) {
                     return true
                 }
             }
@@ -137,7 +134,7 @@ class GameManager {
      * @param board The tictactoe board.
      * @return MAX_NUMBER if ai wins, MIN_NUMBER if human wins and DRAW if there is no winner.
      */
-    fun evaluate(board: Array<Array<BoxState>> ): Int {
+    private fun evaluate(board: Array<Array<BoxState>>): Int {
         for (arr in winStates) {
             if (board[arr[ZERO] / ROW_COL_NUMBER][arr[ZERO] % ROW_COL_NUMBER] ==
                 board[arr[ONE] / ROW_COL_NUMBER][arr[ONE] % ROW_COL_NUMBER] &&
@@ -145,91 +142,112 @@ class GameManager {
                 board[arr[TWO] / ROW_COL_NUMBER][arr[TWO] % ROW_COL_NUMBER] &&
                 board[arr[ZERO] / ROW_COL_NUMBER][arr[ZERO] % ROW_COL_NUMBER] != BoxState.Empty
             ) {
-                if (board[arr[ZERO] / ROW_COL_NUMBER][arr[ZERO] % ROW_COL_NUMBER] == BoxState.O) {
-                    return MAX_SCORE
+                return if (
+                    board[arr[ZERO] / ROW_COL_NUMBER][arr[ZERO] % ROW_COL_NUMBER] == BoxState.O
+                ) {
+                    MAX_SCORE
                 } else {
-                    return MIN_SCORE
+                    MIN_SCORE
                 }
             }
         }
-        return 0;
+        return 0
     }
-    fun minimax(
-        board:Array<Array<BoxState>>,
+    private fun minimax(
+        board: Array<Array<BoxState>>,
         depth: Int,
         isAI: Boolean
-    ): Int{
-        val score = evaluate(board)
-
-        return when (score){
-            MAX_SCORE -> MAX_SCORE
-            MIN_SCORE -> MIN_SCORE
-            DRAW -> if (!isMovesLeft(board)){
+    ): Int = when (evaluate(board)) {
+        MAX_SCORE -> MAX_SCORE
+        MIN_SCORE -> MIN_SCORE
+        DRAW ->
+            if (!isMovesLeft(board)) {
                 DRAW
-            }else{
-                if(isAI){
-                    var best = -1000
-                    for (i in 0..2) {
-                        for (j in 0..2) {
-                            // Check if cell is empty
-                            if (board[i][j] == BoxState.Empty) {
-                                // Make the move
-                                board[i][j] = BoxState.O
-
-                                // Call minimax recursively and choose
-                                // the maximum value
-                                best = best.coerceAtLeast(
-                                    minimax(
-                                        board,
-                                        depth + 1, !isAI
-                                    )
-                                )
-                                // Undo the move
-                                board[i][j] = BoxState.Empty
-                            }
-                        }
-                    }
-                    best
-                }else{
-                    var best = 1000
-                    for (i in 0..2) {
-                        for (j in 0..2) {
-                            // Check if cell is empty
-                            if (board[i][j] == BoxState.Empty) {
-                                // Make the move
-                                board[i][j] = BoxState.X
-
-                                // Call minimax recursively and choose
-                                // the minimum value
-                                best = best.coerceAtMost(
-                                    minimax(
-                                        board,
-                                        depth + 1, !isAI
-                                    )
-                                )
-                                // Undo the move
-                                board[i][j] = BoxState.Empty
-                            }
-                        }
-                    }
-                    best
-                }
+            } else {
+                minimaxOnDraw(board, depth, isAI)
             }
-            else -> DRAW
-        }
+        else -> DRAW
     }
 
+    private fun minimaxOnDraw(
+        board: Array<Array<BoxState>>,
+        depth: Int,
+        isAI: Boolean
+    ) = if (isAI) {
+        getBestMoveMaximizer(board, depth, isAI)
+    } else {
+        getBestMoveMinimizer(board, depth, isAI)
+    }
+
+    private fun getBestMoveMaximizer(
+        board: Array<Array<BoxState>>,
+        depth: Int,
+        isAI: Boolean
+    ): Int {
+        var best = BEST_MAX
+        for (i in 0..2) {
+            for (j in 0..2) {
+                // Check if cell is empty
+                if (board[i][j] == BoxState.Empty) {
+                    // Make the move
+                    board[i][j] = BoxState.O
+
+                    // Call minimax recursively and choose
+                    // the maximum value
+                    best = best.coerceAtLeast(
+                        minimax(
+                            board,
+                            depth + 1, !isAI
+                        )
+                    )
+                    // Undo the move
+                    board[i][j] = BoxState.Empty
+                }
+            }
+        }
+        return best
+    }
+
+    private fun getBestMoveMinimizer(
+        board: Array<Array<BoxState>>,
+        depth: Int,
+        isAI: Boolean
+    ): Int {
+        var best = BEST_MIN
+        for (i in 0..2) {
+            for (j in 0..2) {
+                // Check if cell is empty
+                if (board[i][j] == BoxState.Empty) {
+                    // Make the move
+                    board[i][j] = BoxState.X
+
+                    // Call minimax recursively and choose
+                    // the minimum value
+                    best = best.coerceAtMost(
+                        minimax(
+                            board,
+                            depth + 1, !isAI
+                        )
+                    )
+                    // Undo the move
+                    board[i][j] = BoxState.Empty
+                }
+            }
+        }
+        return best
+    }
+
+    /**
+     * Find best move for board.
+     *
+     * @param board The current board state.
+     */
     fun findBestMove(board: Array<Array<BoxState>>): Move {
-        var bestVal = -1000
         val bestMove = Move()
-        bestMove.row = -1
-        bestMove.col = -1
+        bestMove.row = DEFAULT_NUMBER
+        bestMove.col = DEFAULT_NUMBER
         val moves = mutableListOf<Move>()
 
-
-        Timber.e("${board[0][0]} ${board[0][1]} ${board[0][2]}")
-        Timber.e("${board[1][0]} ${board[1][1]} ${board[1][2]}")
-        Timber.e("${board[2][0]} ${board[2][1]} ${board[2][2]}")
         // Traverse all cells, evaluate minimax function
         // for all empty cells. And return the cell
         // with optimal value.
@@ -251,35 +269,26 @@ class GameManager {
                     move.col = j
                     move.score = moveVal
                     moves.add(move)
-
-                    // If the value of the current move is
-                    // more than the best value, then update
-                    // best
-                    if (moveVal > bestVal) {
-                        bestMove.row = i
-                        bestMove.col = j
-                        bestVal = moveVal
-                    }
                 }
             }
         }
-
-        val m = moves.sortBy { move ->
-            move.score
-        }
-
         var move = Move()
-        move.score = -1000
+        move.score = BEST_MAX
         moves.forEach {
-            if(it.score > move.score){
+            if (it.score > move.score) {
                 move = it
-            }else if(move.score == it.score){
-                move = listOf(it, move)[nextInt(0,2)]
+            } else if (move.score == it.score) {
+                move = listOf(it, move)[nextInt(0, 2)]
             }
         }
         return move
     }
 
+    /**
+     * Called to get current board state.
+     *
+     * @return The current state of the board.
+     */
     fun getBoard(): Array<Array<BoxState>> {
         val board = arrayOf(
             arrayOf<BoxState>(BoxState.Empty, BoxState.Empty, BoxState.Empty),
@@ -312,7 +321,9 @@ class GameManager {
         private const val INCREMENT_NUM = 1
 
         private const val TOTAL_NUMBER_OF_BOXES = 9
+
+        private const val BEST_MAX = -1000
+        private const val BEST_MIN = 1000
+        private const val DEFAULT_NUMBER = -1
     }
 }
-
-

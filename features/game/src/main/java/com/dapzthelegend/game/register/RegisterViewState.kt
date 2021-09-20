@@ -1,21 +1,29 @@
-package com.dapzthelegend.multiplayer.register
+package com.dapzthelegend.game.register
 
 import com.dapzthelegend.ui.base.BaseViewState
 
 /**
  * Class for managing different view states of [RegisterFragment]
+ *
+ * @param isMultiPlayer Game mode.
  */
-sealed class RegisterViewState : BaseViewState {
+sealed class RegisterViewState(
+    val isMultiPlayer: Boolean
+) : BaseViewState {
 
     /**
      * No name has been entered.
+     *
+     * @param isMultiPlayer Game mode.
      */
-    object NoNameEntered : RegisterViewState()
+    class NoNameEntered(isMultiPlayer: Boolean) : RegisterViewState(isMultiPlayer)
 
     /**
      * Name entered.
+     *
+     * @param isMultiPlayer Game mode.
      */
-    object NameEntered : RegisterViewState()
+    class NameEntered(isMultiPlayer: Boolean) : RegisterViewState(isMultiPlayer)
 
     // =============================================================================================
     // Public helper methods

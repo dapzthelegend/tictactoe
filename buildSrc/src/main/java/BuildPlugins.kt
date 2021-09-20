@@ -11,6 +11,9 @@ object BuildPlugins {
     const val KOTLIN_KAPT = "kotlin-kapt"
     const val KOTLIN_ALLOPEN = "kotlin-allopen"
 
+    const val GOOGLE_SERVICES = "com.google.gms.google-services"
+    const val FIREBASE_CRASHLYTICS= "com.google.firebase.crashlytics"
+
     const val NAVIGATION_SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
     const val JACOCO = "com.vanniktech.android.junit.jacoco"
     const val GRAPH_GENERATOR = "com.vanniktech.dependency.graph.generator"

@@ -1,4 +1,4 @@
-package com.dapzthelegend.multiplayer.register
+package com.dapzthelegend.game.register
 
 import com.dapzthelegend.ui.base.BaseViewEvent
 

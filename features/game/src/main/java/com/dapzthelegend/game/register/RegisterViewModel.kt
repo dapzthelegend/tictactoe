@@ -1,4 +1,4 @@
-package com.dapzthelegend.multiplayer.register
+package com.dapzthelegend.game.register
 
 import android.text.TextUtils
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,7 @@ class RegisterViewModel : BaseViewModel<RegisterViewEvent>() {
 
     val playerName1 = MutableStateFlow("")
     val playerName2 = MutableStateFlow("")
-    var isMultiPlayer = false
+    var isMultiPlayer = true
 
     private val inputState: Flow<Boolean> = combine(playerName1, playerName2) { name1, name2 ->
         !TextUtils.isEmpty(name1) || !TextUtils.isEmpty(name2)
@@ -29,14 +29,14 @@ class RegisterViewModel : BaseViewModel<RegisterViewEvent>() {
 
     var state: StateFlow<RegisterViewState> = inputState.map {
         if (it) {
-            RegisterViewState.NameEntered
+            RegisterViewState.NameEntered(isMultiPlayer)
         } else {
-            RegisterViewState.NoNameEntered
+            RegisterViewState.NoNameEntered(isMultiPlayer)
         }
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = RegisterViewState.NoNameEntered
+        started = SharingStarted.Lazily,
+        initialValue = RegisterViewState.NoNameEntered(isMultiPlayer)
     )
 
     // =============================================================================================

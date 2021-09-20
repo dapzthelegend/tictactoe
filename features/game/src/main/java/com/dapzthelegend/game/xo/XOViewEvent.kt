@@ -1,4 +1,4 @@
-package com.dapzthelegend.multiplayer.xo
+package com.dapzthelegend.game.xo
 
 import com.dapzthelegend.ui.base.BaseViewEvent
 

@@ -1,14 +1,14 @@
-package com.dapzthelegend.multiplayer.register
+package com.dapzthelegend.game.register
 
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.dapzthelegend.game.register.di.DaggerRegisterComponent
+import com.dapzthelegend.game.register.di.RegisterModule
 import com.dapzthelegend.multiplayer.R
 import com.dapzthelegend.multiplayer.databinding.FragmentRegisterBinding
-import com.dapzthelegend.multiplayer.register.di.DaggerRegisterComponent
-import com.dapzthelegend.multiplayer.register.di.RegisterModule
 import com.dapzthelegend.ui.base.BaseFragment
 import com.dapzthelegend.ui.extensions.collect
 
@@ -48,7 +48,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
      * Instantiate view binding data variables.
      */
     override fun onInitDataBinding() {
-        viewModel.isMultiPlayer = args.mode == "multi"
+        viewModel.isMultiPlayer = args.isMultiPlayer
 
         viewBinding.viewModel = viewModel
     }
@@ -63,21 +63,24 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
     private fun onViewEventChanged(viewEvent: RegisterViewEvent) {
         when (viewEvent) {
             is RegisterViewEvent.OpenXO -> {
-                var action = RegisterFragmentDirections.actionRegisterFragmentToXoFragment(mode = args.mode)
-                if (!TextUtils.isEmpty(viewEvent.player1)
-                ) {
-                    action = RegisterFragmentDirections.actionRegisterFragmentToXoFragment(
-                        playerName1 = viewEvent.player1!!,
-                        mode = args.mode
-                    )
-                }else if (!TextUtils.isEmpty(viewEvent.player1) &&
+                var action = RegisterFragmentDirections
+                    .actionRegisterFragmentToXoFragment(isMultiPlayer = args.isMultiPlayer)
+                if (!TextUtils.isEmpty(viewEvent.player1) &&
                     !TextUtils.isEmpty(viewEvent.player2)
                 ) {
-                    action = RegisterFragmentDirections.actionRegisterFragmentToXoFragment(
-                        playerName1 = viewEvent.player1!!,
-                        playerName2 = viewEvent.player2!!,
-                        mode = args.mode
-                    )
+                    action = RegisterFragmentDirections
+                        .actionRegisterFragmentToXoFragment(
+                            playerName1 = viewEvent.player1!!,
+                            playerName2 = viewEvent.player2!!,
+                            isMultiPlayer = args.isMultiPlayer
+                        )
+                } else if (!TextUtils.isEmpty(viewEvent.player1)
+                ) {
+                    action = RegisterFragmentDirections
+                        .actionRegisterFragmentToXoFragment(
+                            playerName1 = viewEvent.player1!!,
+                            isMultiPlayer = args.isMultiPlayer
+                        )
                 }
                 findNavController().navigate(action)
             }

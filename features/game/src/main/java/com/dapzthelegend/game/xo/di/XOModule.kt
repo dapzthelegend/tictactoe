@@ -1,8 +1,8 @@
-package com.dapzthelegend.multiplayer.xo.di
+package com.dapzthelegend.game.xo.di
 
 import com.dapzthelegend.core.di.scopes.FeatureScope
-import com.dapzthelegend.multiplayer.xo.XOFragment
-import com.dapzthelegend.multiplayer.xo.XOViewModel
+import com.dapzthelegend.game.xo.XOFragment
+import com.dapzthelegend.game.xo.XOViewModel
 import com.dapzthelegend.ui.extensions.viewModel
 import dagger.Module
 import dagger.Provides

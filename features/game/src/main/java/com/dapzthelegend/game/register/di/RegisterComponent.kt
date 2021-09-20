@@ -1,7 +1,7 @@
-package com.dapzthelegend.multiplayer.register.di
+package com.dapzthelegend.game.register.di
 
 import com.dapzthelegend.core.di.scopes.FeatureScope
-import com.dapzthelegend.multiplayer.register.RegisterFragment
+import com.dapzthelegend.game.register.RegisterFragment
 import dagger.Component
 
 /**
