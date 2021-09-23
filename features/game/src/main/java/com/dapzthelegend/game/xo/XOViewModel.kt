@@ -39,12 +39,13 @@ class XOViewModel : BaseViewModel<XOViewEvent>() {
                 XOViewState.RoundEnd
             }
             Player.PLAYER_1 -> {
-                message.postValue("$x Won!")
+                message.postValue("s")
                 XOViewState.RoundEnd
             }
-            Player.PLAYER_2 ->
+            Player.PLAYER_2 -> {
+                message.postValue("$o Won!")
                 XOViewState.RoundEnd
-
+            }
             else -> XOViewState.InRound
         }
     }
